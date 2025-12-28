@@ -170,3 +170,55 @@ To run both unit and functional tests sequentially:
 make test
 
 ```
+
+## Visualization
+
+The project includes a Python script `visualizer.py` to visualize the map and animate the swarm movement.
+
+### Prerequisites
+* Python 3.x
+* Required libraries:
+  ```bash
+  pip install matplotlib pandas numpy
+
+### How to Run
+
+1. **Run the simulation** with logging enabled (`-n 1`). This generates the `results.csv` file.
+```bash
+./pso my_map.txt -p 50 -i 200 -n 1
+
+```
+
+2. **Run the visualizer** passing the map file as an argument:
+```bash
+python visualizer.py my_map.txt
+
+```
+
+### Controls
+
+* **Play/Pause**: Start or stop the animation.
+* **Iteration >**: Move one iteration forward.
+* **< Iteration**: Move one iteration backward.
+
+## Configuration File Format
+
+If you use the `-c` flag, the configuration file should contain 5 floating-point numbers separated by spaces:
+
+```text
+<w> <c1> <r1> <c2> <r2>
+
+```
+
+* **w**: Inertia weight (e.g., 0.5)
+* **c1**: Cognitive coefficient (particle's memory)
+* **r1**: Random factor for c1 (-1 for random generation [0..1])
+* **c2**: Social coefficient (swarm's memory)
+* **r2**: Random factor for c2 (-1 for random generation [0..1])
+
+**Example `config.txt`:**
+
+```text
+0.7 1.4 -1 1.4 -1
+
+```
